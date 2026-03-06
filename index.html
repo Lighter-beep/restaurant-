@@ -34,65 +34,50 @@ overflow-x:hidden;
 }
 
 /* INTRO */
-/* UPDATED CINEMATIC INTRO STYLES */
-#intro-loader {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: var(--beige);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    z-index: 9999;
-    overflow: hidden; /* Prevents scrollbars during animation */
+
+#intro-loader{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:var(--beige);
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+z-index:9999;
 }
 
-.ootak-letters {
-    display: flex;
-    gap: 12px;
-    position: relative;
-    z-index: 10001; /* Stays above curtains until they fully part */
-    transition: transform 1.2s cubic-bezier(0.45, 0, 0.55, 1), opacity 0.8s ease;
+.ootak-letters{
+display:flex;
+gap:12px;
 }
 
-.ootak-letters span {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2.5rem, 10vw, 5.5rem); /* Slightly larger for impact */
-    font-weight: 700;
-    color: var(--dark-brown);
-    opacity: 0;
-    transform: translateY(30px);
-    display: inline-block;
+.ootak-letters span{
+font-family:'Playfair Display',serif;
+font-size:clamp(2.5rem,8vw,5rem);
+opacity:0;
+transform:translateY(20px);
 }
 
-/* Enhanced Curtain Logic for Mobile */
-.curtain {
-    position: absolute;
-    left: 0;
-    width: 100%;
-    height: 51vh; /* Extra 1% to prevent the center line gap */
-    background: var(--dark-brown);
-    z-index: 10000;
-    transition: transform 1.5s cubic-bezier(0.7, 0, 0.3, 1);
+.curtain{
+position:absolute;
+left:0;
+width:100%;
+height:50%;
+background:var(--dark-brown);
+transition:transform .6s cubic-bezier(.77,0,.175,1);
 }
 
-#curtain-top {
-    top: 0;
-    border-bottom: 4px solid var(--orange);
+#curtain-top{
+top:0;
+border-bottom:3px solid var(--orange);
 }
 
-#curtain-bottom {
-    bottom: 0;
-    border-top: 4px solid var(--orange);
-}
-
-/* Floating animation class */
-.lift-up {
-    transform: translateY(-100px);
-    opacity: 0;
+#curtain-bottom{
+bottom:0;
+border-top:3px solid var(--orange);
 }
 
 /* HEADER */
@@ -373,31 +358,28 @@ font-size:2.2rem;
 </div>
 
 </div>
+
 </section>
+
 <section id="reviews">
-    <h2 class="section-title">Customer <span>Reviews</span></h2>
-    <div class="menu-grid">
-        
-        <div class="menu-card" data-aos="fade-up">
-            <img src="food1.jpg" class="menu-photo" alt="Customer Food Photo 1">
-            <div class="menu-content">
-                <p style="color:var(--orange); margin-bottom:10px;">⭐⭐⭐⭐⭐</p>
-                <p>"Amazing desi food and great service! The Shinwari was cooked to perfection."</p>
-                <br><b>Ali Khan</b>
-            </div>
-        </div>
 
-        <div class="menu-card" data-aos="fade-up" data-aos-delay="200">
-            <img src="food2.jpg" class="menu-photo" alt="Customer Food Photo 2">
-            <div class="menu-content">
-                <p style="color:var(--orange); margin-bottom:10px;">⭐⭐⭐⭐⭐</p>
-                <p>"Best karahi in Islamabad. The atmosphere at Rana Market is so vibrant."</p>
-                <br><b>Sara Ahmed</b>
-            </div>
-        </div>
+<h2 class="section-title">Customer <span>Reviews</span></h2>
 
-    </div>
+<div class="menu-grid">
 
+<div class="menu-card">
+⭐⭐⭐⭐⭐
+<p>Amazing desi food and great service!</p>
+<b>Ali Khan</b>
+</div>
+
+<div class="menu-card">
+⭐⭐⭐⭐⭐
+<p>Best karahi in Islamabad.</p>
+<b>Sara Ahmed</b>
+</div>
+
+</div>
 
 </section>
 
@@ -441,42 +423,45 @@ loading="lazy">
 <p>© 2026 Ootak Restaurant – Islamabad</p>
 
 </footer>
+
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
 <script>
-AOS.init({ duration: 800, once: true });
 
-window.onload = () => {
-    const letters = document.querySelectorAll('.ootak-letters span');
-    const container = document.querySelector('.ootak-letters');
-    
-    // 1. Step-by-Step Letter Appearance
-    letters.forEach((l, i) => {
-        setTimeout(() => {
-            l.style.opacity = '1';
-            l.style.transform = 'translateY(0)';
-            l.style.transition = '0.6s ease-out';
-        }, i * 200); // Slower, more elegant typing
-    });
+AOS.init({duration:800,once:true});
 
-    // 2. The "Wait and Float" Moment
-    // Triggered after letters finish + 1 second pause
-    setTimeout(() => {
-        container.classList.add('lift-up');
-        
-        // 3. Open Curtains after the text starts to lift
-        setTimeout(() => {
-            document.getElementById('curtain-top').style.transform = 'translateY(-100%)';
-            document.getElementById('curtain-bottom').style.transform = 'translateY(100%)';
-            
-            // 4. Clean up and enable scrolling
-            setTimeout(() => {
-                document.getElementById('intro-loader').style.display = 'none';
-                document.body.style.overflow = 'auto';
-            }, 1500); // Matches the 1.5s curtain transition
-        }, 400); 
+window.onload=()=>{
 
-    }, (letters.length * 200) + 1000); // The 1000 is the "dramatic pause" time
+const letters=document.querySelectorAll('.ootak-letters span');
+
+letters.forEach((l,i)=>{
+
+setTimeout(()=>{
+
+l.style.opacity='1';
+l.style.transform='translateY(0)';
+l.style.transition='0.4s ease-out';
+
+},i*150);
+
+});
+
+setTimeout(()=>{
+
+document.getElementById('curtain-top').style.transform='translateY(-100%)';
+document.getElementById('curtain-bottom').style.transform='translateY(100%)';
+
+setTimeout(()=>{
+
+document.getElementById('intro-loader').style.display='none';
+document.body.style.overflow='auto';
+
+},600);
+
+},(letters.length*150)+200);
+
 }
+
 </script>
 
 </body>
