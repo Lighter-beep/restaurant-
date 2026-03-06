@@ -15,7 +15,6 @@
             --dark-brown: #3E2723;
             --orange: #E67E22;
             --white: #FFFFFF;
-            --glass: rgba(255, 255, 255, 0.1);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
@@ -28,7 +27,6 @@
             display: flex; flex-direction: column; justify-content: center; align-items: center;
         }
 
-        /* Blurred Logo Background */
         .intro-bg-blur {
             position: absolute; width: 60%; opacity: 0.1; filter: blur(15px);
             animation: pulse 4s infinite ease-in-out;
@@ -43,21 +41,21 @@
             opacity: 0; transform: translateY(30px); display: inline-block;
         }
 
-        /* Theatre Curtains */
+        /* Theatre Curtains - SPEED OPTIMIZED */
         .curtain {
-            position: absolute; left: 0; width: 100%; height: 50%;
+            position: absolute; left: 0; width: 100%; height: 50.5%;
             background: var(--dark-brown); z-index: 10000;
-            transition: transform 1.5s cubic-bezier(0.77, 0, 0.175, 1);
+            transition: transform 0.7s cubic-bezier(0.77, 0, 0.175, 1); /* Faster snap */
         }
-        #curtain-top { top: 0; border-bottom: 2px solid var(--orange); }
-        #curtain-bottom { bottom: 0; border-top: 2px solid var(--orange); }
+        #curtain-top { top: 0; border-bottom: 3px solid var(--orange); }
+        #curtain-bottom { bottom: 0; border-top: 3px solid var(--orange); }
 
         /* --- 2. HEADER --- */
         header {
             position: fixed; top: 0; width: 100%; padding: 15px 8%;
             display: flex; justify-content: space-between; align-items: center;
             background: rgba(62, 39, 35, 0.95); z-index: 1000;
-            backdrop-filter: blur(10px); border-bottom: 1px solid var(--orange);
+            backdrop-filter: blur(10px); border-bottom: 2px solid var(--orange);
         }
         .nav-logo { height: 55px; border-radius: 5px; border: 1px solid var(--orange); }
         nav { display: flex; gap: 25px; }
@@ -85,38 +83,27 @@
         .section-title { font-family: 'Playfair Display', serif; font-size: 3.5rem; text-align: center; margin-bottom: 50px; }
         .section-title span { color: var(--orange); }
 
-        /* About Section */
-        .about { text-align: center; max-width: 900px; margin: 0 auto; line-height: 1.8; font-size: 1.2rem; }
-
-        /* Menu Section */
-        #menu { background: var(--white); }
         .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
         .menu-card { 
-            background: var(--beige); padding: 30px; border-radius: 12px; transition: 0.4s; 
-            border-left: 5px solid transparent; position: relative; overflow: hidden;
+            background: var(--white); padding: 30px; border-radius: 12px; transition: 0.4s; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05); text-align: center;
         }
-        .menu-card:hover { transform: scale(1.03); border-left: 5px solid var(--orange); box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
-        .menu-price { color: var(--orange); font-weight: bold; font-size: 1.2rem; display: block; margin-top: 15px; }
+        .menu-card:hover { transform: translateY(-10px); border-bottom: 5px solid var(--orange); }
 
-        /* Location Section */
         .location-container { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
-        iframe { width: 100%; height: 400px; border-radius: 15px; border: none; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        iframe { width: 100%; height: 400px; border-radius: 15px; border: 2px solid var(--orange); }
 
-        /* Floating WhatsApp */
         .whatsapp-float {
             position: fixed; bottom: 30px; right: 30px; background: #25d366; color: white;
             width: 65px; height: 65px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            font-size: 35px; z-index: 2000; box-shadow: 0 10px 20px rgba(0,0,0,0.2); transition: 0.3s;
+            font-size: 35px; z-index: 2000; box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
-        .whatsapp-float:hover { transform: rotate(15deg) scale(1.1); }
 
         footer { background: var(--dark-brown); color: var(--beige); padding: 60px 10%; text-align: center; }
 
-        /* Mobile Adjustments */
         @media (max-width: 768px) {
             nav { display: none; }
             .location-container { grid-template-columns: 1fr; }
-            .section-title { font-size: 2.5rem; }
         }
     </style>
 </head>
@@ -132,13 +119,12 @@
     </div>
 
     <header>
-        <img src="image_96c7cb.jpg" class="nav-logo" alt="Ootak Logo">
+        <img src="image_96c7cb.jpg" class="nav-logo" alt="Logo">
         <nav>
             <a href="#home">HOME</a>
             <a href="#menu">MENU</a>
-            <a href="#gallery">GALLERY</a>
             <a href="#location">LOCATION</a>
-            <a href="#contact">CONTACT</a>
+            <a href="tel:+923135135811">RESERVATIONS</a>
         </nav>
     </header>
 
@@ -151,33 +137,18 @@
         </div>
     </section>
 
-    <section class="about" data-aos="fade-up">
-        <h2 class="section-title">Our <span>Story</span></h2>
-        <p>Ootak Restaurant brings the authentic soul of desi cuisine to Islamabad. With traditional recipes, warm hospitality, and a vibrant atmosphere, we offer a dining experience that blends heritage with modern taste.</p>
-    </section>
-
     <section id="menu">
         <h2 class="section-title">Menu <span>Preview</span></h2>
         <div class="menu-grid">
             <div class="menu-card" data-aos="flip-left">
                 <h3 style="color:var(--orange)">Chicken Karahi</h3>
                 <p>Authentic Desi Spices & Fresh Tomato Base</p>
-                <span class="menu-price">Rs. 1,850</span>
+                <p style="margin-top:15px; font-weight:bold;">Rs. 1,850</p>
             </div>
             <div class="menu-card" data-aos="flip-left" data-aos-delay="100">
                 <h3 style="color:var(--orange)">Mutton Shinwari</h3>
                 <p>Namak Mandi Style Tender Mutton</p>
-                <span class="menu-price">Rs. 2,900</span>
-            </div>
-            <div class="menu-card" data-aos="flip-left" data-aos-delay="200">
-                <h3>Seekh Kabab</h3>
-                <p>Smoky BBQ Minced Beef Perfection</p>
-                <span class="menu-price">Rs. 950</span>
-            </div>
-            <div class="menu-card" data-aos="flip-left" data-aos-delay="300">
-                <h3>Mint Margarita</h3>
-                <p>Fresh Mint & Lime Refreshment</p>
-                <span class="menu-price">Rs. 450</span>
+                <p style="margin-top:15px; font-weight:bold;">Rs. 2,900</p>
             </div>
         </div>
     </section>
@@ -186,16 +157,13 @@
         <h2 class="section-title">Visit <span>Us</span></h2>
         <div class="location-container">
             <div data-aos="fade-right">
-                <h3>Find Us At</h3>
-                <p>Rana Market F-7/2, Islamabad 442010, Pakistan</p>
-                <br>
-                <h3>Timings</h3>
-                <p>12:00 PM – 1:00 AM (Open Daily)</p>
+                <h3>Rana Market F-7/2</h3>
+                <p>Islamabad 442010, Pakistan</p>
                 <br>
                 <a href="tel:+923135135811" class="btn btn-primary" style="margin:0">CALL NOW</a>
             </div>
             <div data-aos="fade-left">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3318.572426466266!2d73.053678!3d33.720619!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38dfbf9087799d65%3A0x6a2c27778216c02!2sF-7%20Markaz%20Islamabad!5e0!3m2!1sen!2s!4v1700000000000!5m2!1sen!2s"></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3318.572456488734!2d73.0538!3d33.7197!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38dfbf97825d0f65%3A0x6968f9a24443b7!2sF-7%20Markaz%20Islamabad!5e0!3m2!1sen!2spk!4v1700000000000"></iframe>
             </div>
         </div>
     </section>
@@ -204,14 +172,8 @@
         <i class="fab fa-whatsapp"></i>
     </a>
 
-    <footer id="contact">
-        <img src="image_96c7cb.jpg" style="height: 80px; margin-bottom: 20px;" alt="Logo">
-        <p>Reinventing the Soul of Desi Cuisine</p>
-        <div style="margin: 25px 0; font-size: 1.5rem;">
-            <i class="fab fa-facebook-f" style="margin: 0 15px;"></i>
-            <i class="fab fa-instagram" style="margin: 0 15px;"></i>
-        </div>
-        <p style="font-size: 0.8rem; opacity: 0.6;">© 2026 Ootak Restaurant – Islamabad. All rights reserved.</p>
+    <footer>
+        <p>© 2026 Ootak Restaurant – Islamabad</p>
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -230,17 +192,17 @@
                 }, i * 300);
             });
 
-            // 2. Open Curtains after letters appear
+            // 2. WAIT 2 SECONDS after "OOTAK" is full before opening curtains
             setTimeout(() => {
                 document.getElementById('curtain-top').style.transform = 'translateY(-100%)';
                 document.getElementById('curtain-bottom').style.transform = 'translateY(100%)';
                 
-                // 3. Hide Loader to enable scrolling
+                // 3. Enable scrolling once curtains are gone
                 setTimeout(() => {
                     document.getElementById('intro-loader').style.display = 'none';
                     document.body.style.overflow = 'auto';
-                }, 1500);
-            }, (letters.length * 300) + 500);
+                }, 1000);
+            }, (letters.length * 300) + 2000); // Wait time increased for impact
         };
     </script>
 </body>
