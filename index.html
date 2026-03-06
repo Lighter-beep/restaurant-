@@ -1,238 +1,269 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cafe Noor | Premium Dining in Karachi</title>
+    <title>Ootak Restaurant | Islamabad</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-    
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'brand-green': '#064e3b',
-                        'brand-cream': '#fdfbf7',
-                        'brand-gold': '#c5a059',
-                    },
-                    fontFamily: {
-                        'serif': ['Playfair Display', 'serif'],
-                        'sans': ['Inter', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
-
     <style>
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-        .glass-nav { background: rgba(6, 78, 59, 0.95); backdrop-filter: blur(10px); }
-        
-        /* Preloader Styles */
-        #preloader {
+        :root {
+            --beige: #F5E6D3; /* Matching logo background */
+            --dark-brown: #3E2723; /* Matching logo turban/text */
+            --orange: #E67E22; /* Matching logo accent */
+            --white: #FFFFFF;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        body { font-family: 'Poppins', sans-serif; background-color: var(--beige); color: var(--dark-brown); overflow-x: hidden; }
+
+        /* --- CINEMATIC INTRO --- */
+        #intro-loader {
             position: fixed;
-            inset: 0;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--beige);
             z-index: 9999;
             display: flex;
-            align-items: center;
             justify-content: center;
-            background-color: #064e3b;
+            align-items: center;
         }
-        .letter {
+        .loader-logo-blur {
+            position: absolute;
+            width: 80%;
+            opacity: 0.1;
+            filter: blur(15px);
+            animation: pulse 4s infinite;
+        }
+        .ootak-letters span {
+            font-family: 'Playfair Display', serif;
+            font-size: 6rem;
+            font-weight: bold;
+            color: var(--dark-brown);
             display: inline-block;
             opacity: 0;
-            transform: translateY(20px);
-            color: #fdfbf7;
-            font-family: 'Playfair Display', serif;
-            font-size: 3rem;
-            font-weight: bold;
-            letter-spacing: 0.1em;
+            transform: translateY(30px);
+            margin: 0 15px;
         }
-        @media (min-width: 768px) { .letter { font-size: 5rem; } }
+        .curtain-panel {
+            position: absolute;
+            top: 0; width: 50%; height: 100%;
+            background: var(--dark-brown);
+            transition: transform 1.5s cubic-bezier(0.7, 0, 0.3, 1);
+            z-index: 10000;
+            display: none;
+        }
+        #curtain-left { left: 0; }
+        #curtain-right { right: 0; }
+
+        /* --- HEADER --- */
+        header {
+            position: fixed;
+            top: 0; width: 100%; padding: 10px 5%;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 100; background: rgba(62, 39, 35, 0.95);
+            transition: 0.4s;
+        }
+        .logo-container img { height: 60px; border-radius: 50%; }
+        nav a { color: var(--beige); text-decoration: none; margin-left: 25px; font-weight: 600; text-transform: uppercase; font-size: 0.85rem; transition: 0.3s; }
+        nav a:hover { color: var(--orange); }
+
+        /* --- HERO --- */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('image_96c464.jpg');
+            background-size: cover; background-position: center;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            text-align: center; color: var(--white);
+        }
+        .hero h1 { font-family: 'Playfair Display', serif; font-size: 5.5rem; color: var(--orange); }
+        .hero p { font-size: 1.6rem; margin: 15px 0 30px; letter-spacing: 1px; }
+
+        /* --- MENU SECTION (Using Poster Background) --- */
+        #menu {
+            position: relative;
+            background: linear-gradient(rgba(245, 230, 211, 0.9), rgba(245, 230, 211, 0.9)), url('image_96c7a6.jpg');
+            background-attachment: fixed;
+            background-size: cover;
+            padding: 100px 10%;
+        }
+        .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .menu-card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px; border-radius: 15px;
+            border-left: 5px solid var(--orange);
+            transition: 0.4s;
+        }
+        .menu-card:hover { transform: scale(1.03); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
+
+        /* --- BUTTONS --- */
+        .btn { padding: 15px 40px; border: none; cursor: pointer; font-weight: bold; text-transform: uppercase; text-decoration: none; transition: 0.3s; display: inline-block; margin: 10px; }
+        .btn-orange { background: var(--orange); color: white; }
+        .btn-outline { border: 2px solid var(--white); color: white; }
+        .btn:hover { transform: translateY(-5px); filter: brightness(1.1); }
+
+        /* --- SECTION STYLING --- */
+        section { padding: 80px 10%; }
+        .title { text-align: center; font-family: 'Playfair Display', serif; font-size: 3rem; margin-bottom: 50px; }
+        .title span { color: var(--orange); }
+
+        /* --- REVIEWS --- */
+        .review-track { display: flex; overflow-x: auto; gap: 20px; padding: 20px 0; scrollbar-width: none; }
+        .review-card { min-width: 320px; background: var(--dark-brown); color: var(--beige); padding: 30px; border-radius: 20px; text-align: center; }
+
+        /* --- FOOTER --- */
+        footer { background: var(--dark-brown); color: var(--beige); padding: 60px 10% 20px; text-align: center; }
+        .socials i { font-size: 1.5rem; margin: 0 15px; color: var(--orange); cursor: pointer; }
+
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
+        @media (max-width: 768px) { .hero h1 { font-size: 3.5rem; } nav { display: none; } }
     </style>
 </head>
-<body class="bg-brand-cream text-gray-800 font-sans overflow-hidden" x-data="{ activeCat: 'Appetizers', scrtop: false }" @scroll.window="scrtop = (window.pageYOffset > 500) ? true : false">
+<body>
 
-    <div id="preloader">
-        <div id="logo-text">
-            <span class="letter">C</span>
-            <span class="letter">A</span>
-            <span class="letter">F</span>
-            <span class="letter">E</span>
-            <span class="letter">&nbsp;</span>
-            <span class="letter">N</span>
-            <span class="letter">O</span>
-            <span class="letter">O</span>
-            <span class="letter">R</span>
+    <div id="intro-loader">
+        <img src="image_96c7cb.jpg" class="loader-logo-blur">
+        <div class="ootak-letters" id="ootak-text">
+            <span>O</span><span>O</span><span>T</span><span>A</span><span>K</span>
         </div>
+        <div class="curtain-panel" id="curtain-left"></div>
+        <div class="curtain-panel" id="curtain-right"></div>
     </div>
 
-    <main id="main-content">
-        <div class="bg-brand-green text-brand-cream py-2 px-4 text-sm flex justify-between items-center border-b border-white/10">
-            <a href="tel:02134858887" class="hover:text-brand-gold transition flex items-center gap-2">
-                <i class="fas fa-phone-alt text-xs"></i> (021) 34858887
-            </a>
-            <span class="hidden md:block font-medium tracking-wide uppercase text-[10px]">Premium Taste in the Heart of Karachi</span>
-            <div class="flex gap-4">
-                <i class="fab fa-facebook-f cursor-pointer hover:text-brand-gold"></i>
-                <i class="fab fa-instagram cursor-pointer hover:text-brand-gold"></i>
-            </div>
+    <header>
+        <div class="logo-container">
+            <img src="image_96c7cb.jpg" alt="Ootak Logo">
         </div>
-
-        <nav class="sticky top-0 z-50 glass-nav text-white py-4 shadow-xl">
-            <div class="container mx-auto px-6 flex justify-between items-center">
-                <div class="text-2xl font-serif font-bold tracking-tighter text-brand-gold">CAFE NOOR</div>
-                <div class="hidden md:flex gap-8 font-semibold text-sm uppercase tracking-widest">
-                    <a href="#home" class="hover:text-brand-gold transition">Home</a>
-                    <a href="#menu" class="hover:text-brand-gold transition">Menu</a>
-                    <a href="#about" class="hover:text-brand-gold transition">Our Story</a>
-                    <a href="#contact" class="hover:text-brand-gold transition">Contact</a>
-                </div>
-                <button class="bg-brand-gold hover:bg-yellow-600 text-brand-green px-5 py-2 rounded-full text-xs font-bold uppercase transition">Order Now</button>
-            </div>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#about">Our Story</a>
+            <a href="#menu">Menu</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#contact">Contact</a>
         </nav>
+    </header>
 
-        <section id="home" class="relative h-[85vh] flex items-center justify-center overflow-hidden">
-            <div class="absolute inset-0 z-0">
-                <img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&q=80" class="w-full h-full object-cover" alt="Interior">
-                <div class="absolute inset-0 bg-black/60"></div>
-            </div>
-            <div class="relative z-10 text-center px-6">
-                <h1 class="text-brand-cream font-serif text-5xl md:text-7xl mb-4">The Ambiance Speaks First</h1>
-                <p class="text-gray-300 text-lg md:text-xl max-w-2xl mx-auto mb-8">Experience authentic flavors and premium dining at Noor Cafe & Grill.</p>
-                <div class="flex flex-col md:flex-row gap-4 justify-center">
-                    <a href="#menu" class="bg-brand-gold text-brand-green px-8 py-4 rounded-md font-bold hover:scale-105 transition">VIEW MENU</a>
-                    <a href="tel:02134858887" class="border-2 border-brand-cream text-brand-cream px-8 py-4 rounded-md font-bold hover:bg-brand-cream hover:text-brand-green transition">CALL NOW</a>
-                </div>
-            </div>
-        </section>
+    <section class="hero" id="home">
+        <h1 data-aos="zoom-out">Ootak Restaurant</h1>
+        <p data-aos="fade-up" data-aos-delay="300">Reinventing the Soul of Desi Cuisine in Islamabad</p>
+        <div data-aos="fade-up" data-aos-delay="500">
+            <a href="#menu" class="btn btn-orange">View Menu</a>
+            <a href="#contact" class="btn btn-outline">Find Us</a>
+        </div>
+    </section>
 
-        <div class="sticky top-[72px] z-40 bg-white shadow-md border-b">
-            <div class="container mx-auto px-4">
-                <div class="flex overflow-x-auto no-scrollbar py-4 gap-4 items-center">
-                    <template x-for="cat in ['Appetizers', 'BBQ', 'Karahi', 'Traditional Food', 'Chinese', 'Burgers', 'Sandwiches', 'Beverages', 'Desserts']">
-                        <button 
-                            @click="activeCat = cat"
-                            :class="activeCat === cat ? 'bg-brand-green text-white shadow-lg' : 'bg-gray-100 text-gray-600'"
-                            class="whitespace-nowrap px-6 py-2 rounded-full font-semibold text-sm transition-all duration-300 border border-transparent hover:border-brand-green"
-                            x-text="cat"></button>
-                    </template>
-                </div>
+    <section id="about">
+        <h2 class="title" data-aos="fade-up">Authentic <span>Heritage</span></h2>
+        <p style="text-align: center; max-width: 850px; margin: 0 auto; font-size: 1.2rem; line-height: 1.8;" data-aos="fade-up">
+            Ootak Restaurant brings the authentic soul of desi cuisine to the heart of Islamabad. 
+            From the bustling streets of F-7 to your plate, we blend traditional recipes 
+            with a premium atmosphere that honors our rich culinary heritage.
+        </p>
+    </section>
+
+    <section id="menu">
+        <h2 class="title" data-aos="fade-up">Signature <span>Dishes</span></h2>
+        <div class="menu-grid">
+            <div class="menu-card" data-aos="fade-up">
+                <div style="display:flex; justify-content: space-between;"><h3>Chicken Karahi</h3> <strong>Rs. 1850</strong></div>
+                <p>A house specialty cooked with fresh tomatoes and secret spices.</p>
+            </div>
+            <div class="menu-card" data-aos="fade-up" data-aos-delay="100">
+                <div style="display:flex; justify-content: space-between;"><h3>Mutton Karahi</h3> <strong>Rs. 2900</strong></div>
+                <p>Tender mutton prepared in a traditional iron wok.</p>
+            </div>
+            <div class="menu-card" data-aos="fade-up" data-aos-delay="200">
+                <div style="display:flex; justify-content: space-between;"><h3>Seekh Kabab</h3> <strong>Rs. 950</strong></div>
+                <p>Succulent minced meat grilled to smoky perfection.</p>
+            </div>
+            <div class="menu-card" data-aos="fade-up" data-aos-delay="300">
+                <div style="display:flex; justify-content: space-between;"><h3>Mint Margarita</h3> <strong>Rs. 450</strong></div>
+                <p>The perfect refreshing companion for your spice journey.</p>
             </div>
         </div>
+    </section>
 
-        <section id="menu" class="py-20 container mx-auto px-6 min-h-[600px]">
-            <div class="text-center mb-16">
-                <h2 class="font-serif text-4xl text-brand-green mb-2" x-text="activeCat"></h2>
-                <div class="w-24 h-1 bg-brand-gold mx-auto"></div>
+    <section id="reviews">
+        <h2 class="title" data-aos="fade-up">Guest <span>Experiences</span></h2>
+        <div class="review-track">
+            <div class="review-card">
+                <p>"Best Desi food experience in Islamabad. The ambiance is unmatched!"</p>
+                <br><strong>⭐⭐⭐⭐⭐</strong>
             </div>
+            <div class="review-card">
+                <p>"The Mutton Karahi is a masterpiece. Highly recommend for families."</p>
+                <br><strong>⭐⭐⭐⭐⭐</strong>
+            </div>
+            <div class="review-card">
+                <p>"Traditional taste with premium service. 10/10 for the F-7 branch."</p>
+                <br><strong>⭐⭐⭐⭐⭐</strong>
+            </div>
+        </div>
+    </section>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-                <template x-if="activeCat === 'Appetizers'">
-                    <div class="contents">
-                        <div class="bg-white rounded-2xl overflow-hidden shadow-lg group">
-                            <img src="https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&q=80" class="w-full h-48 object-cover">
-                            <div class="p-6">
-                                <h3 class="font-bold text-xl mb-1">Chicken Nuggets</h3>
-                                <p class="text-gray-500 text-sm mb-4">Golden crispy bites (6 pcs)</p>
-                                <div class="flex justify-between items-center">
-                                    <span class="text-brand-green font-bold">PKR 650</span>
-                                    <button class="bg-brand-green text-white px-4 py-2 rounded-lg text-sm">Add</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </template>
-                </div>
-        </section>
-
-        <section id="about" class="bg-brand-green text-brand-cream py-20">
-            <div class="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
-                <div class="rounded-2xl overflow-hidden shadow-2xl h-96">
-                    <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&q=80" class="w-full h-full object-cover" alt="Restaurant Interior">
-                </div>
-                <div>
-                    <span class="text-brand-gold font-bold tracking-widest uppercase text-sm">Our Story</span>
-                    <h2 class="font-serif text-4xl md:text-5xl mt-2 mb-6">A Legacy of Taste</h2>
-                    <p class="text-gray-300 leading-relaxed mb-6">
-                        Cafe Noor is known for its quality food, welcoming environment, and authentic flavors. Located in PIB Colony Karachi, we proudly serve families and food lovers with dedication and taste.
-                    </p>
+    <section id="contact">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 50px;">
+            <div data-aos="fade-right">
+                <h2 style="font-family: 'Playfair Display'; margin-bottom: 20px;">Contact <span>Us</span></h2>
+                <p><i class="fas fa-map-marker-alt" style="color:var(--orange)"></i> Rana Market F-7/2, Islamabad</p><br>
+                <p><i class="fas fa-phone" style="color:var(--orange)"></i> +92 313 5135811</p><br>
+                <p><i class="fas fa-clock" style="color:var(--orange)"></i> 12:00 PM – 1:00 AM</p>
+                <div style="margin-top: 30px;">
+                    <a href="tel:+923135135811" class="btn btn-orange">Call Now</a>
                 </div>
             </div>
-        </section>
-
-        <section id="contact" class="py-20 container mx-auto px-6">
-            <div class="grid lg:grid-cols-3 gap-12">
-                <div class="lg:col-span-1 space-y-6">
-                    <h2 class="font-serif text-4xl text-brand-green">Visit Us</h2>
-                    <p class="text-gray-600">V3R3+X8J bus stop, 107 shop, PIB Colony Main Rd, Karachi, 74800</p>
-                    <p class="font-bold text-brand-green text-xl">(021) 34858887</p>
-                    <div class="flex gap-2">
-                        <span class="bg-brand-gold/20 text-brand-green px-3 py-1 rounded text-xs font-bold">DINE-IN</span>
-                        <span class="bg-brand-gold/20 text-brand-green px-3 py-1 rounded text-xs font-bold">TAKEAWAY</span>
-                    </div>
-                </div>
-                <div class="lg:col-span-2">
-                    <div class="h-64 bg-gray-200 rounded-2xl flex items-center justify-center text-gray-400">
-                        [ Google Map Placeholder - PIB Colony Karachi ]
-                    </div>
-                </div>
+            <div data-aos="fade-left">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3318.570222045512!2d73.0538!3d33.7182!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzPCsDQzJzA1LjUiTiA3M8KwMDMnMTMuNyJF!5e0!3m2!1sen!2spk!4v1625000000000!5m2!1sen!2spk" width="100%" height="300" style="border:0; border-radius:15px;" allowfullscreen="" loading="lazy"></iframe>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <footer class="bg-zinc-900 text-gray-500 py-12 px-6 text-center">
-            <div class="text-white font-serif text-2xl mb-4 italic">Cafe Noor</div>
-            <p class="text-xs uppercase tracking-widest">&copy; 2026 Cafe Noor & Grill. All Rights Reserved.</p>
-        </footer>
+    <footer>
+        <img src="image_96c7cb.jpg" style="height: 80px; border-radius: 50%; margin-bottom: 20px;">
+        <h3>Ootak Restaurant</h3>
+        <p>Reinventing the Soul of Desi Cuisine</p>
+        <div class="socials" style="margin: 25px 0;">
+            <i class="fab fa-facebook-f"></i>
+            <i class="fab fa-instagram"></i>
+            <i class="fab fa-tiktok"></i>
+        </div>
+        <p style="font-size: 0.8rem; opacity: 0.5;">© 2026 Ootak Restaurant – Islamabad. All Rights Reserved.</p>
+    </footer>
 
-        <a href="https://wa.me/922134858887" class="fixed bottom-6 right-6 z-50 bg-green-500 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition"><i class="fab fa-whatsapp text-3xl"></i></a>
-        <button x-show="scrtop" @click="window.scrollTo({top: 0, behavior: 'smooth'})" class="fixed bottom-24 right-6 z-50 bg-brand-green text-white w-14 h-14 rounded-full flex items-center justify-center shadow-2xl"><i class="fas fa-arrow-up"></i></button>
-    </main>
-
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // 🎬 GSAP Animation Logic
+        AOS.init({ duration: 1000, once: true });
+
         window.addEventListener('DOMContentLoaded', () => {
-            const tl = gsap.timeline();
+            const letters = document.querySelectorAll('.ootak-letters span');
+            const loader = document.getElementById('intro-loader');
+            const cLeft = document.getElementById('curtain-left');
+            const cRight = document.getElementById('curtain-right');
 
-            // 1. Reveal letters one by one
-            tl.to(".letter", {
-                opacity: 1,
-                y: 0,
-                duration: 0.5,
-                stagger: 0.1,
-                ease: "back.out(1.7)"
+            // 1. Letters Animation
+            letters.forEach((letter, idx) => {
+                setTimeout(() => {
+                    letter.style.opacity = '1';
+                    letter.style.transform = 'translateY(0)';
+                    letter.style.transition = '0.5s ease-out';
+                }, idx * 250);
             });
 
-            // 2. Wait a second
-            tl.to("#logo-text", {
-                scale: 1.1,
-                duration: 1,
-                ease: "power1.inOut"
-            }, "+=0.2");
-
-            // 3. Rise like curtains
-            tl.to("#preloader", {
-                yPercent: -100,
-                duration: 1.2,
-                ease: "power4.inOut",
-                onComplete: () => {
-                    document.body.classList.remove('overflow-hidden');
-                    document.getElementById('preloader').style.display = 'none';
-                }
-            });
-
-            // 4. Subtle fade in for the main content
-            tl.from("#main-content", {
-                opacity: 0.8,
-                duration: 0.5
-            }, "-=0.5");
+            // 2. Curtain Reveal
+            setTimeout(() => {
+                cLeft.style.display = 'block';
+                cRight.style.display = 'block';
+                setTimeout(() => {
+                    cLeft.style.transform = 'translateX(-100%)';
+                    cRight.style.transform = 'translateX(100%)';
+                }, 100);
+                
+                setTimeout(() => {
+                    loader.style.display = 'none';
+                    document.body.style.overflowY = 'auto';
+                }, 1500);
+            }, 2800);
         });
     </script>
 </body>
