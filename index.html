@@ -1,220 +1,468 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ootak Restaurant | Islamabad Official Preview</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/awesome/6.0.0/css/all.min.css">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-        :root {
-            --beige: #F5E6D3;
-            --dark-brown: #3E2723;
-            --orange: #E67E22;
-            --white: #FFFFFF;
-        }
+<title>Ootak Restaurant | Islamabad Official Preview</title>
 
-        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
-        body { font-family: 'Poppins', sans-serif; background-color: var(--beige); color: var(--dark-brown); overflow-x: hidden; }
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
-        /* --- 1. INTRO LOADER --- */
-        #intro-loader {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-color: var(--beige); z-index: 9999;
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-        }
-        .ootak-letters { position: relative; z-index: 10; display: flex; gap: 12px; }
-        .ootak-letters span {
-            font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 8vw, 5rem);
-            font-weight: bold; color: var(--dark-brown); opacity: 0; transform: translateY(20px);
-        }
-        .curtain {
-            position: absolute; left: 0; width: 100%; height: 50.5%;
-            background: var(--dark-brown); z-index: 10000;
-            transition: transform 0.6s cubic-bezier(0.77, 0, 0.175, 1);
-        }
-        #curtain-top { top: 0; border-bottom: 3px solid var(--orange); }
-        #curtain-bottom { bottom: 0; border-top: 3px solid var(--orange); }
+<style>
 
-        /* --- 2. HEADER --- */
-        header {
-            position: fixed; top: 0; width: 100%; padding: 12px 8%;
-            display: flex; justify-content: space-between; align-items: center;
-            background: rgba(62, 39, 35, 0.98); z-index: 1000;
-            border-bottom: 2px solid var(--orange);
-        }
-        .nav-logo { height: 50px; border-radius: 4px; }
-        nav a { color: var(--beige); text-decoration: none; font-weight: 600; font-size: 0.8rem; margin-left: 20px; letter-spacing: 1px; }
+:root{
+--beige:#F5E6D3;
+--dark-brown:#3E2723;
+--orange:#E67E22;
+--white:#ffffff;
+}
 
-        /* --- 3. HERO (CLEAN VERSION - NO PHOTO) --- */
-        .hero {
-            height: 100vh;
-            background: var(--dark-brown); 
-            display: flex; flex-direction: column; 
-            justify-content: center; align-items: center; text-align: center; color: white; padding: 20px;
-        }
-        .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 10vw, 6rem); color: var(--orange); margin-bottom: 10px; }
-        .hero-info { margin: 15px 0; font-size: 1.1rem; letter-spacing: 1px; color: var(--beige); }
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+scroll-behavior:smooth;
+}
 
-        /* --- 4. BUTTONS & CARDS --- */
-        .btn { padding: 15px 35px; border-radius: 4px; font-weight: bold; text-decoration: none; transition: 0.3s; display: inline-block; margin: 10px; }
-        .btn-primary { background: var(--orange); color: white; border: none; }
-        .btn-outline { border: 2px solid white; color: white; }
-        
-        section { padding: 80px 10%; }
-        .section-title { font-family: 'Playfair Display', serif; font-size: 3rem; text-align: center; margin-bottom: 40px; }
-        .section-title span { color: var(--orange); }
+body{
+font-family:'Poppins',sans-serif;
+background:var(--beige);
+color:var(--dark-brown);
+overflow-x:hidden;
+}
 
-        .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
-        .menu-card { background: white; padding: 0; border-radius: 12px; text-align: center; transition: 0.4s; overflow: hidden; }
-        .menu-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
-        .menu-photo { width: 100%; height: 200px; object-fit: cover; }
-        .menu-content { padding: 20px; }
+/* INTRO */
 
-        /* --- 5. WHATSAPP & FOOTER --- */
-        .whatsapp-float {
-            position: fixed; bottom: 25px; right: 25px; background: #25d366; color: white;
-            width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            font-size: 30px; z-index: 2000; text-decoration: none;
-        }
-        footer { background: var(--dark-brown); color: var(--beige); padding: 40px; text-align: center; }
+#intro-loader{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:var(--beige);
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+z-index:9999;
+}
 
-        @media (max-width: 768px) { nav { display: none; } .section-title { font-size: 2.2rem; } }
-    </style>
+.ootak-letters{
+display:flex;
+gap:12px;
+}
+
+.ootak-letters span{
+font-family:'Playfair Display',serif;
+font-size:clamp(2.5rem,8vw,5rem);
+opacity:0;
+transform:translateY(20px);
+}
+
+.curtain{
+position:absolute;
+left:0;
+width:100%;
+height:50%;
+background:var(--dark-brown);
+transition:transform .6s cubic-bezier(.77,0,.175,1);
+}
+
+#curtain-top{
+top:0;
+border-bottom:3px solid var(--orange);
+}
+
+#curtain-bottom{
+bottom:0;
+border-top:3px solid var(--orange);
+}
+
+/* HEADER */
+
+header{
+position:fixed;
+top:0;
+width:100%;
+padding:12px 8%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:rgba(62,39,35,.98);
+border-bottom:2px solid var(--orange);
+z-index:1000;
+}
+
+.nav-logo{
+height:50px;
+}
+
+nav a{
+color:var(--beige);
+text-decoration:none;
+font-size:.8rem;
+margin-left:20px;
+font-weight:600;
+letter-spacing:1px;
+}
+
+/* HERO */
+
+.hero{
+height:100vh;
+background:linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.7)),url('hero.jpg');
+background-size:cover;
+background-position:center;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+color:white;
+padding:20px;
+}
+
+.hero h1{
+font-family:'Playfair Display',serif;
+font-size:clamp(3rem,10vw,6rem);
+color:var(--orange);
+}
+
+.preview{
+color:#ddd;
+font-size:.9rem;
+margin-top:10px;
+}
+
+.hero-info{
+margin:15px 0;
+font-size:1.1rem;
+}
+
+/* BUTTONS */
+
+.btn{
+padding:15px 35px;
+border-radius:4px;
+font-weight:bold;
+text-decoration:none;
+margin:10px;
+display:inline-block;
+transition:.3s;
+}
+
+.btn-primary{
+background:var(--orange);
+color:white;
+}
+
+.btn-outline{
+border:2px solid white;
+color:white;
+}
+
+.btn:hover{
+transform:translateY(-3px);
+box-shadow:0 10px 20px rgba(0,0,0,.3);
+}
+
+/* SECTIONS */
+
+section{
+padding:80px 10%;
+}
+
+.section-title{
+font-family:'Playfair Display',serif;
+font-size:3rem;
+text-align:center;
+margin-bottom:40px;
+}
+
+.section-title span{
+color:var(--orange);
+}
+
+/* CARDS */
+
+.menu-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:25px;
+}
+
+.menu-card{
+background:white;
+padding:30px;
+border-radius:12px;
+text-align:center;
+transition:.4s;
+}
+
+.menu-card:hover{
+transform:translateY(-10px);
+box-shadow:0 15px 30px rgba(0,0,0,.1);
+}
+
+/* GALLERY */
+
+.gallery-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:15px;
+}
+
+.gallery-grid img{
+width:100%;
+height:250px;
+object-fit:cover;
+border-radius:10px;
+transition:.3s;
+}
+
+.gallery-grid img:hover{
+transform:scale(1.05);
+}
+
+/* WHATSAPP */
+
+.whatsapp-float{
+position:fixed;
+bottom:25px;
+right:25px;
+background:#25d366;
+color:white;
+width:60px;
+height:60px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:30px;
+text-decoration:none;
+}
+
+/* FOOTER */
+
+footer{
+background:var(--dark-brown);
+color:var(--beige);
+text-align:center;
+padding:40px;
+}
+
+@media(max-width:768px){
+
+nav{
+display:none;
+}
+
+.section-title{
+font-size:2.2rem;
+}
+
+}
+
+</style>
 </head>
+
 <body>
 
-    <div id="intro-loader">
-        <div class="ootak-letters"><span>O</span><span>O</span><span>T</span><span>A</span><span>K</span></div>
-        <div id="curtain-top" class="curtain"></div>
-        <div id="curtain-bottom" class="curtain"></div>
-    </div>
+<div id="intro-loader">
 
-    <header>
-        <img src="image_96c7cb.jpg" class="nav-logo" alt="Logo">
-        <nav>
-            <a href="#home">HOME</a>
-            <a href="#about">WHY US</a>
-            <a href="#menu">MENU</a>
-            <a href="#reviews">REVIEWS</a>
-            <a href="#location">LOCATION</a>
-        </nav>
-    </header>
+<div class="ootak-letters">
+<span>O</span><span>O</span><span>T</span><span>A</span><span>K</span>
+</div>
 
-    <section class="hero" id="home">
-        <h1 data-aos="fade-down">Ootak Restaurant</h1>
-        <div class="hero-info" data-aos="fade-up">
-            <p>⏰ 12:00 PM – 1:00 AM</p>
-            <p>📞 +92 313 5135811</p>
-        </div>
-        <div data-aos="zoom-in" data-aos-delay="400">
-            <a href="#menu" class="btn btn-primary">VIEW MENU</a>
-            <a href="tel:+923135135811" class="btn btn-outline">CALL NOW</a>
-        </div>
-    </section>
+<div id="curtain-top" class="curtain"></div>
+<div id="curtain-bottom" class="curtain"></div>
 
-    <section id="about" data-aos="fade-up">
-        <h2 class="section-title">Why <span>Ootak?</span></h2>
-        <div class="menu-grid">
-            <div class="menu-card" style="padding: 30px;">
-                <i class="fas fa-utensils fa-2x" style="color:var(--orange)"></i>
-                <h3 style="margin-top:15px">Authentic Desi Taste</h3>
-                <p>Traditional recipes cooked fresh daily with organic spices.</p>
-            </div>
-            <div class="menu-card" style="padding: 30px;">
-                <i class="fas fa-users fa-2x" style="color:var(--orange)"></i>
-                <h3 style="margin-top:15px">Premium Dining</h3>
-                <p>Comfortable environment for family & friends in F-7.</p>
-            </div>
-            <div class="menu-card" style="padding: 30px;">
-                <i class="fas fa-map-marker-alt fa-2x" style="color:var(--orange)"></i>
-                <h3 style="margin-top:15px">Prime Location</h3>
-                <p>Located in the heart of Islamabad at Rana Market.</p>
-            </div>
-        </div>
-    </section>
+</div>
 
-    <section id="menu" style="background: var(--white);">
-        <h2 class="section-title">Our <span>Specialties</span></h2>
-        <div class="menu-grid">
-            <div class="menu-card" data-aos="flip-left">
-                <img src="https://via.placeholder.com/600x400/3E2723/E67E22?text=Chicken+Shinwari" class="menu-photo" alt="Chicken Shinwari">
-                <div class="menu-content">
-                    <h3 style="color:var(--orange)">Chicken Shinwari</h3>
-                    <p>Tribal flavors of Karahi cooked with tomato base.</p>
-                    <p style="font-weight:bold; margin-top:10px;">Rs. 1,850</p>
-                </div>
-            </div>
-            <div class="menu-card" data-aos="flip-left" data-aos-delay="100">
-                <img src="https://via.placeholder.com/600x400/3E2723/E67E22?text=Mutton+Shinwari" class="menu-photo" alt="Mutton Shinwari">
-                <div class="menu-content">
-                    <h3 style="color:var(--orange)">Mutton Karahi</h3>
-                    <p>Freshly prepared mutton with traditional green spices.</p>
-                    <p style="font-weight:bold; margin-top:10px;">Rs. 2,900</p>
-                </div>
-            </div>
-        </div>
-    </section>
+<header>
 
-    <section id="reviews">
-        <h2 class="section-title">Customer <span>Reviews</span></h2>
-        <div class="menu-grid">
-            <div class="menu-card" style="padding: 30px;" data-aos="fade-right">
-                <p style="color:var(--orange)">⭐⭐⭐⭐⭐</p>
-                <p>"Amazing desi food and great service!"</p>
-                <br><b>Ali Khan</b>
-            </div>
-            <div class="menu-card" style="padding: 30px;" data-aos="fade-left">
-                <p style="color:var(--orange)">⭐⭐⭐⭐⭐</p>
-                <p>"Best karahi in Islamabad. Highly recommended."</p>
-                <br><b>Sara Ahmed</b>
-            </div>
-        </div>
-    </section>
+<img src="logo.jpg" class="nav-logo">
 
-    <section id="location" style="background: var(--white);">
-        <h2 class="section-title">Find <span>Us</span></h2>
-        <iframe 
-            src="http://googleusercontent.com/maps.google.com/6" 
-            width="100%" height="400" style="border:0; border-radius:15px;" allowfullscreen="" loading="lazy">
-        </iframe>
-    </section>
+<nav>
+<a href="#home">HOME</a>
+<a href="#about">WHY US</a>
+<a href="#menu">MENU</a>
+<a href="#reviews">REVIEWS</a>
+<a href="#gallery">GALLERY</a>
+<a href="#location">LOCATION</a>
+</nav>
 
-    <a href="https://wa.me/923135135811" class="whatsapp-float">
-        <i class="fab fa-whatsapp"></i>
-    </a>
+</header>
 
-    <footer>
-        <img src="image_96c7cb.jpg" style="height:60px; margin-bottom:15px;">
-        <p>© 2026 Ootak Restaurant – Islamabad. All rights reserved.</p>
-    </footer>
+<section class="hero" id="home">
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        AOS.init({ duration: 800, once: true });
+<h1 data-aos="fade-down">Ootak Restaurant</h1>
 
-        window.onload = () => {
-            const letters = document.querySelectorAll('.ootak-letters span');
-            letters.forEach((l, i) => {
-                setTimeout(() => {
-                    l.style.opacity = '1';
-                    l.style.transform = 'translateY(0)';
-                    l.style.transition = '0.4s ease-out';
-                }, i * 150);
-            });
+<p class="preview">Website Preview Demo</p>
 
-            setTimeout(() => {
-                document.getElementById('curtain-top').style.transform = 'translateY(-100%)';
-                document.getElementById('curtain-bottom').style.transform = 'translateY(100%)';
-                setTimeout(() => {
-                    document.getElementById('intro-loader').style.display = 'none';
-                    document.body.style.overflow = 'auto';
-                }, 600);
-            }, (letters.length * 150) + 200);
-        };
-    </script>
+<div class="hero-info">
+<p>⏰ 12:00 PM – 1:00 AM</p>
+<p>📞 +92 313 5135811</p>
+</div>
+
+<div data-aos="zoom-in">
+
+<a href="#menu" class="btn btn-primary">VIEW MENU</a>
+<a href="tel:+923135135811" class="btn btn-outline">CALL NOW</a>
+
+</div>
+
+</section>
+
+<section id="about">
+
+<h2 class="section-title">Why <span>Ootak?</span></h2>
+
+<div class="menu-grid">
+
+<div class="menu-card">
+<h3>Authentic Desi Taste</h3>
+<p>Traditional recipes cooked fresh daily.</p>
+</div>
+
+<div class="menu-card">
+<h3>Premium Dining</h3>
+<p>Comfortable environment for family & friends.</p>
+</div>
+
+<div class="menu-card">
+<h3>Prime Location</h3>
+<p>Located in Rana Market Islamabad.</p>
+</div>
+
+</div>
+
+</section>
+
+<section id="menu" style="background:white">
+
+<h2 class="section-title">Our <span>Specialties</span></h2>
+
+<div class="menu-grid">
+
+<div class="menu-card">
+<h3 style="color:var(--orange)">Chicken Shinwari</h3>
+<p>Rs. 1850</p>
+</div>
+
+<div class="menu-card">
+<h3 style="color:var(--orange)">Mutton Karahi</h3>
+<p>Rs. 2900</p>
+</div>
+
+</div>
+
+</section>
+
+<section id="reviews">
+
+<h2 class="section-title">Customer <span>Reviews</span></h2>
+
+<div class="menu-grid">
+
+<div class="menu-card">
+⭐⭐⭐⭐⭐
+<p>Amazing desi food and great service!</p>
+<b>Ali Khan</b>
+</div>
+
+<div class="menu-card">
+⭐⭐⭐⭐⭐
+<p>Best karahi in Islamabad.</p>
+<b>Sara Ahmed</b>
+</div>
+
+</div>
+
+</section>
+
+<section id="gallery" style="background:white">
+
+<h2 class="section-title">Restaurant <span>Gallery</span></h2>
+
+<div class="gallery-grid">
+
+<img src="food1.jpg" alt="Food">
+<img src="food2.jpg" alt="Food">
+<img src="food3.jpg" alt="Food">
+<img src="restaurant.jpg" alt="Restaurant Interior">
+
+</div>
+
+</section>
+
+<section id="location">
+
+<h2 class="section-title">Find <span>Us</span></h2>
+
+<iframe
+src="https://maps.google.com/maps?q=Rana%20Market%20Islamabad&t=&z=15&ie=UTF8&iwloc=&output=embed"
+width="100%"
+height="400"
+style="border:0;border-radius:15px;"
+loading="lazy">
+</iframe>
+
+</section>
+
+<a href="https://wa.me/923135135811" class="whatsapp-float">
+<i class="fab fa-whatsapp"></i>
+</a>
+
+<footer>
+
+<img src="logo.jpg" style="height:60px">
+
+<p>© 2026 Ootak Restaurant – Islamabad</p>
+
+</footer>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+<script>
+
+AOS.init({duration:800,once:true});
+
+window.onload=()=>{
+
+const letters=document.querySelectorAll('.ootak-letters span');
+
+letters.forEach((l,i)=>{
+
+setTimeout(()=>{
+
+l.style.opacity='1';
+l.style.transform='translateY(0)';
+l.style.transition='0.4s ease-out';
+
+},i*150);
+
+});
+
+setTimeout(()=>{
+
+document.getElementById('curtain-top').style.transform='translateY(-100%)';
+document.getElementById('curtain-bottom').style.transform='translateY(100%)';
+
+setTimeout(()=>{
+
+document.getElementById('intro-loader').style.display='none';
+document.body.style.overflow='auto';
+
+},600);
+
+},(letters.length*150)+200);
+
+}
+
+</script>
+
 </body>
 </html>
