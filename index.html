@@ -20,36 +20,36 @@
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
         body { font-family: 'Poppins', sans-serif; background-color: var(--beige); color: var(--dark-brown); overflow: hidden; }
 
-        /* --- 1. FIXED CINEMATIC INTRO --- */
+        /* --- 1. CINEMATIC INTRO (TEXT ON TOP) --- */
         #intro-loader {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-color: var(--beige); z-index: 9999;
+            background-color: transparent; z-index: 9999;
             display: flex; justify-content: center; align-items: center;
         }
 
         .ootak-letters {
-            display: flex; gap: 12px; position: relative; z-index: 10001;
-            transition: transform 1s cubic-bezier(0.45, 0, 0.55, 1), opacity 0.8s ease;
+            display: flex; gap: 12px; position: relative; 
+            z-index: 10005; 
+            transition: transform 1s ease, opacity 0.8s ease;
         }
 
         .ootak-letters span {
             font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 8vw, 5rem);
-            font-weight: bold; color: var(--dark-brown); opacity: 0; transform: translateY(20px);
+            font-weight: bold; color: var(--beige); 
+            opacity: 0; transform: translateY(20px);
         }
 
-        /* Curtains - Set to 51% to prevent mobile gap */
         .curtain {
             position: absolute; left: 0; width: 100%; height: 51%;
             background: var(--dark-brown); z-index: 10000;
-            transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+            transition: transform 1.5s cubic-bezier(0.77, 0, 0.175, 1);
         }
         #curtain-top { top: 0; border-bottom: 3px solid var(--orange); }
         #curtain-bottom { bottom: 0; border-top: 3px solid var(--orange); }
 
-        /* Text Lift Animation */
-        .lift-up { transform: translateY(-50px); opacity: 0; }
+        .lift-up { transform: translateY(-80px); opacity: 0; }
 
-        /* --- 2. HEADER --- */
+        /* --- 2. HEADER & HERO --- */
         header {
             position: fixed; top: 0; width: 100%; padding: 12px 8%;
             display: flex; justify-content: space-between; align-items: center;
@@ -59,7 +59,6 @@
         .nav-logo { height: 50px; }
         nav a { color: var(--beige); text-decoration: none; font-weight: 600; font-size: 0.8rem; margin-left: 20px; }
 
-        /* --- 3. HERO (CLEAN) --- */
         .hero {
             height: 100vh; background: var(--dark-brown);
             display: flex; flex-direction: column; justify-content: center; align-items: center;
@@ -71,7 +70,7 @@
         .btn-primary { background: var(--orange); color: white; }
         .btn-outline { border: 2px solid white; color: white; }
 
-        /* --- 4. SECTIONS --- */
+        /* --- 3. CONTENT SECTIONS --- */
         section { padding: 80px 10%; }
         .section-title { font-family: 'Playfair Display', serif; font-size: 3rem; text-align: center; margin-bottom: 40px; }
         .section-title span { color: var(--orange); }
@@ -80,6 +79,11 @@
         .menu-card { background: white; padding: 30px; border-radius: 12px; text-align: center; transition: 0.4s; }
         .menu-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
 
+        /* GALLERY GRID */
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; }
+        .gallery-grid img { width: 100%; height: 250px; object-fit: cover; border-radius: 12px; transition: 0.4s; cursor: pointer; }
+        .gallery-grid img:hover { transform: scale(1.05); }
+
         .whatsapp-float {
             position: fixed; bottom: 25px; right: 25px; background: #25d366; color: white;
             width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
@@ -87,7 +91,6 @@
         }
 
         footer { background: var(--dark-brown); color: var(--beige); padding: 40px; text-align: center; }
-
         @media (max-width: 768px) { nav { display: none; } }
     </style>
 </head>
@@ -107,7 +110,7 @@
             <a href="#home">HOME</a>
             <a href="#about">WHY US</a>
             <a href="#menu">MENU</a>
-            <a href="#reviews">REVIEWS</a>
+            <a href="#gallery">GALLERY</a>
             <a href="#location">LOCATION</a>
         </nav>
     </header>
@@ -127,18 +130,9 @@
     <section id="about" data-aos="fade-up">
         <h2 class="section-title">Why <span>Ootak?</span></h2>
         <div class="menu-grid">
-            <div class="menu-card">
-                <h3>Authentic Desi Taste</h3>
-                <p>Traditional recipes cooked fresh daily.</p>
-            </div>
-            <div class="menu-card">
-                <h3>Premium Dining</h3>
-                <p>Comfortable environment for family & friends.</p>
-            </div>
-            <div class="menu-card">
-                <h3>Prime Location</h3>
-                <p>Located in Rana Market F-7, Islamabad.</p>
-            </div>
+            <div class="menu-card"><h3>Authentic Desi Taste</h3><p>Traditional recipes cooked fresh daily.</p></div>
+            <div class="menu-card"><h3>Premium Dining</h3><p>Perfect for family gatherings.</p></div>
+            <div class="menu-card"><h3>Prime Location</h3><p>Rana Market F-7, Islamabad.</p></div>
         </div>
     </section>
 
@@ -146,27 +140,35 @@
         <h2 class="section-title">Our <span>Specialties</span></h2>
         <div class="menu-grid">
             <div class="menu-card" data-aos="flip-left">
-                <img src="menu_karahi.jpg" style="width:100%; height:200px; object-fit:cover; border-radius:8px; margin-bottom:15px;" alt="Karahi">
-                <h3 style="color:var(--orange)">Chicken Shinwari</h3>
-                <p>Rs. 1,850</p>
+                <img src="menu_karahi.jpg" style="width:100%; height:200px; object-fit:cover; border-radius:8px; margin-bottom:15px;" alt="Shinwari">
+                <h3 style="color:var(--orange)">Chicken Shinwari</h3><p>Rs. 1,850</p>
             </div>
             <div class="menu-card" data-aos="flip-left" data-aos-delay="200">
                 <img src="menu_mutton.jpg" style="width:100%; height:200px; object-fit:cover; border-radius:8px; margin-bottom:15px;" alt="Mutton">
-                <h3 style="color:var(--orange)">Mutton Karahi</h3>
-                <p>Rs. 2,900</p>
+                <h3 style="color:var(--orange)">Mutton Karahi</h3><p>Rs. 2,900</p>
             </div>
         </div>
     </section>
 
-    <section id="reviews">
+    <section id="gallery">
+        <h2 class="section-title">Restaurant <span>Gallery</span></h2>
+        <div class="gallery-grid">
+            <img src="food1.jpg" alt="Gallery Photo 1" data-aos="zoom-in">
+            <img src="food2.jpg" alt="Gallery Photo 2" data-aos="zoom-in" data-aos-delay="100">
+            <img src="food3.jpg" alt="Gallery Photo 3" data-aos="zoom-in" data-aos-delay="200">
+            <img src="restaurant.jpg" alt="Gallery Photo 4" data-aos="zoom-in" data-aos-delay="300">
+        </div>
+    </section>
+
+    <section id="reviews" style="background: white;">
         <h2 class="section-title">Customer <span>Reviews</span></h2>
         <div class="menu-grid">
-            <div class="menu-card">
+            <div class="menu-card" data-aos="fade-up">
                 <p style="color:var(--orange)">⭐⭐⭐⭐⭐</p>
                 <p>"Amazing desi food and great service!"</p>
                 <br><b>Ali Khan</b>
             </div>
-            <div class="menu-card">
+            <div class="menu-card" data-aos="fade-up" data-aos-delay="200">
                 <p style="color:var(--orange)">⭐⭐⭐⭐⭐</p>
                 <p>"Best karahi in Islamabad."</p>
                 <br><b>Sara Ahmed</b>
@@ -174,17 +176,12 @@
         </div>
     </section>
 
-    <section id="location" style="background: white;">
+    <section id="location">
         <h2 class="section-title">Find <span>Us</span></h2>
-        <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3318.57245892524!2d73.0538!3d33.7225!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38dfbf77926b487b%3A0xc49f485121334963!2sRana%20Market%20F-7%2F2%20Islamabad!5e0!3m2!1sen!2spk!4v1700000000000!5m2!1sen!2spk" 
-            width="100%" height="400" style="border:0; border-radius:15px;" loading="lazy">
-        </iframe>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3318.575678440056!2d73.0531201!3d33.7208947!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38dfbf769f997631%3A0xc0747440d9904258!2sRana%20Market%2C%20F-7%20Markaz%20F%207%20Markaz%20F-7%2C%20Islamabad%2C%20Islamabad%20Capital%20Territory%2C%20Pakistan!5e0!3m2!1sen!2s!4v1709770000000" width="100%" height="450" style="border:0; border-radius:15px;" allowfullscreen="" loading="lazy"></iframe>
     </section>
 
-    <a href="https://wa.me/923135135811" class="whatsapp-float">
-        <i class="fab fa-whatsapp"></i>
-    </a>
+    <a href="https://wa.me/923135135811" class="whatsapp-float"><i class="fab fa-whatsapp"></i></a>
 
     <footer>
         <img src="logo.jpg" style="height:60px; margin-bottom:10px;">
@@ -199,7 +196,6 @@
             const letters = document.querySelectorAll('.ootak-letters span');
             const container = document.querySelector('.ootak-letters');
             
-            // 1. Type the letters (200ms per letter)
             letters.forEach((l, i) => {
                 setTimeout(() => {
                     l.style.opacity = '1';
@@ -208,23 +204,20 @@
                 }, i * 200);
             });
 
-            // 2. Pause for 1 second, then Float text and Reveal website
             setTimeout(() => {
                 container.classList.add('lift-up');
                 
                 setTimeout(() => {
-                    // Open Curtains
                     document.getElementById('curtain-top').style.transform = 'translateY(-100%)';
                     document.getElementById('curtain-bottom').style.transform = 'translateY(100%)';
                     
-                    // Final Clean-up
                     setTimeout(() => {
                         document.getElementById('intro-loader').style.display = 'none';
                         document.body.style.overflow = 'auto';
-                    }, 1200);
+                    }, 1500);
                 }, 400);
 
-            }, (letters.length * 200) + 1000);
+            }, (letters.length * 200) + 1200);
         };
     </script>
 </body>
