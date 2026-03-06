@@ -20,164 +20,204 @@
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
         body { font-family: 'Poppins', sans-serif; background-color: var(--beige); color: var(--dark-brown); overflow-x: hidden; }
 
-        /* --- 1. CINEMATIC INTRO ANIMATION --- */
+        /* --- 1. INTRO LOADER --- */
         #intro-loader {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-color: var(--beige); z-index: 9999;
             display: flex; flex-direction: column; justify-content: center; align-items: center;
         }
-
-        .intro-bg-blur {
-            position: absolute; width: 60%; opacity: 0.1; filter: blur(15px);
-            animation: pulse 4s infinite ease-in-out;
-        }
-
-        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
-
-        .ootak-letters { position: relative; z-index: 10; display: flex; gap: 15px; }
+        .ootak-letters { position: relative; z-index: 10; display: flex; gap: 12px; }
         .ootak-letters span {
-            font-family: 'Playfair Display', serif; font-size: clamp(3rem, 10vw, 6rem);
-            font-weight: bold; color: var(--dark-brown);
-            opacity: 0; transform: translateY(30px); display: inline-block;
+            font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: bold; color: var(--dark-brown); opacity: 0; transform: translateY(20px);
         }
-
-        /* Theatre Curtains - SPEED ADJUSTED TO 0.8s */
         .curtain {
             position: absolute; left: 0; width: 100%; height: 50.5%;
             background: var(--dark-brown); z-index: 10000;
-            transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+            transition: transform 0.6s cubic-bezier(0.77, 0, 0.175, 1);
         }
-        #curtain-top { top: 0; border-bottom: 2px solid var(--orange); }
-        #curtain-bottom { bottom: 0; border-top: 2px solid var(--orange); }
+        #curtain-top { top: 0; border-bottom: 3px solid var(--orange); }
+        #curtain-bottom { bottom: 0; border-top: 3px solid var(--orange); }
 
         /* --- 2. HEADER --- */
         header {
-            position: fixed; top: 0; width: 100%; padding: 15px 8%;
+            position: fixed; top: 0; width: 100%; padding: 12px 8%;
             display: flex; justify-content: space-between; align-items: center;
-            background: rgba(62, 39, 35, 0.95); z-index: 1000;
-            backdrop-filter: blur(10px); border-bottom: 1px solid var(--orange);
+            background: rgba(62, 39, 35, 0.98); z-index: 1000;
+            border-bottom: 2px solid var(--orange);
         }
-        .nav-logo { height: 55px; border-radius: 5px; border: 1px solid var(--orange); }
-        nav { display: flex; gap: 25px; }
-        nav a { color: var(--beige); text-decoration: none; font-weight: 600; font-size: 0.85rem; letter-spacing: 1px; transition: 0.3s; }
-        nav a:hover { color: var(--orange); }
+        .nav-logo { height: 50px; border-radius: 4px; }
+        nav a { color: var(--beige); text-decoration: none; font-weight: 600; font-size: 0.8rem; margin-left: 20px; letter-spacing: 1px; }
 
-        /* --- 3. HERO SECTION --- */
+        /* --- 3. HERO --- */
         .hero {
             height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('image_96c7a6.jpg');
-            background-size: cover; background-position: center;
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            text-align: center; color: white; padding: 20px;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('image_96c7a6.jpg');
+            background-size: contain; background-repeat: no-repeat; background-position: center;
+            background-color: #1a1a1a; display: flex; flex-direction: column; 
+            justify-content: center; align-items: center; text-align: center; color: white; padding: 20px;
         }
-        .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(3.5rem, 12vw, 7rem); color: var(--orange); line-height: 1; margin-bottom: 10px; }
-        .hero p { font-size: 1.4rem; font-weight: 300; max-width: 800px; letter-spacing: 1px; }
+        .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 10vw, 6rem); color: var(--orange); }
+        .hero-info { margin: 15px 0; font-size: 1.1rem; letter-spacing: 1px; }
 
-        .btn { padding: 18px 40px; border-radius: 4px; font-weight: bold; text-decoration: none; transition: 0.4s; display: inline-block; margin: 15px; letter-spacing: 1px; }
+        /* --- 4. BUTTONS & CARDS --- */
+        .btn { padding: 15px 35px; border-radius: 4px; font-weight: bold; text-decoration: none; transition: 0.3s; display: inline-block; margin: 10px; }
         .btn-primary { background: var(--orange); color: white; border: none; }
         .btn-outline { border: 2px solid white; color: white; }
-        .btn:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.4); filter: brightness(1.1); }
-
-        /* --- 4. SECTIONS --- */
-        section { padding: 100px 10%; }
-        .section-title { font-family: 'Playfair Display', serif; font-size: 3.5rem; text-align: center; margin-bottom: 50px; }
+        
+        section { padding: 80px 10%; }
+        .section-title { font-family: 'Playfair Display', serif; font-size: 3rem; text-align: center; margin-bottom: 40px; }
         .section-title span { color: var(--orange); }
 
-        .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .menu-card { 
-            background: var(--beige); padding: 30px; border-radius: 12px; transition: 0.4s; 
-            border-left: 5px solid transparent; 
-        }
-        .menu-card:hover { transform: scale(1.03); border-left: 5px solid var(--orange); }
+        .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+        .menu-card { background: white; padding: 30px; border-radius: 12px; text-align: center; transition: 0.4s; }
+        .menu-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
 
+        /* --- 5. GALLERY --- */
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; }
+        .gallery-grid img { width: 100%; height: 250px; object-fit: cover; border-radius: 10px; transition: 0.3s; cursor: pointer; }
+        .gallery-grid img:hover { transform: scale(1.05); }
+
+        /* --- 6. WHATSAPP & FOOTER --- */
         .whatsapp-float {
-            position: fixed; bottom: 30px; right: 30px; background: #25d366; color: white;
-            width: 65px; height: 65px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            font-size: 35px; z-index: 2000; box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            position: fixed; bottom: 25px; right: 25px; background: #25d366; color: white;
+            width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 30px; z-index: 2000; text-decoration: none;
         }
+        footer { background: var(--dark-brown); color: var(--beige); padding: 40px; text-align: center; }
 
-        footer { background: var(--dark-brown); color: var(--beige); padding: 60px 10%; text-align: center; }
-
-        @media (max-width: 768px) {
-            nav { display: none; }
-            .section-title { font-size: 2.5rem; }
-        }
+        @media (max-width: 768px) { nav { display: none; } .section-title { font-size: 2.2rem; } }
     </style>
 </head>
 <body>
 
     <div id="intro-loader">
-        <img src="image_96c7cb.jpg" class="intro-bg-blur">
-        <div class="ootak-letters" id="letter-container">
-            <span>O</span><span>O</span><span>T</span><span>A</span><span>K</span>
-        </div>
+        <div class="ootak-letters"><span>O</span><span>O</span><span>T</span><span>A</span><span>K</span></div>
         <div id="curtain-top" class="curtain"></div>
         <div id="curtain-bottom" class="curtain"></div>
     </div>
 
     <header>
-        <img src="image_96c7cb.jpg" class="nav-logo" alt="Ootak Logo">
+        <img src="image_96c7cb.jpg" class="nav-logo" alt="Logo">
         <nav>
             <a href="#home">HOME</a>
+            <a href="#about">WHY US</a>
             <a href="#menu">MENU</a>
+            <a href="#gallery">GALLERY</a>
             <a href="#location">LOCATION</a>
-            <a href="#contact">CONTACT</a>
         </nav>
     </header>
 
     <section class="hero" id="home">
         <h1 data-aos="fade-down">Ootak Restaurant</h1>
-        <p data-aos="fade-up" data-aos-delay="200">Reinventing the Soul of Desi Cuisine in Islamabad</p>
+        <div class="hero-info" data-aos="fade-up">
+            <p>⏰ 12:00 PM – 1:00 AM</p>
+            <p>📞 +92 313 5135811</p>
+        </div>
         <div data-aos="zoom-in" data-aos-delay="400">
             <a href="#menu" class="btn btn-primary">VIEW MENU</a>
-            <a href="#location" class="btn btn-outline">FIND US</a>
+            <a href="tel:+923135135811" class="btn btn-outline">CALL NOW</a>
         </div>
     </section>
 
-    <section id="menu">
-        <h2 class="section-title">Menu <span>Preview</span></h2>
+    <section id="about" data-aos="fade-up">
+        <h2 class="section-title">Why <span>Ootak?</span></h2>
+        <div class="menu-grid">
+            <div class="menu-card">
+                <i class="fas fa-utensils fa-2x" style="color:var(--orange)"></i>
+                <h3 style="margin-top:15px">Authentic Desi Taste</h3>
+                <p>Traditional recipes cooked fresh daily with organic spices.</p>
+            </div>
+            <div class="menu-card">
+                <i class="fas fa-users fa-2x" style="color:var(--orange)"></i>
+                <h3 style="margin-top:15px">Premium Dining</h3>
+                <p>Comfortable environment for family & friends in F-7.</p>
+            </div>
+            <div class="menu-card">
+                <i class="fas fa-map-marker-alt fa-2x" style="color:var(--orange)"></i>
+                <h3 style="margin-top:15px">Prime Location</h3>
+                <p>Located in the heart of Islamabad at Rana Market.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="menu" style="background: var(--white);">
+        <h2 class="section-title">Our <span>Specialties</span></h2>
         <div class="menu-grid">
             <div class="menu-card" data-aos="flip-left">
-                <h3 style="color:var(--orange)">Chicken Karahi</h3>
+                <h3 style="color:var(--orange)">Chicken Shinwari</h3>
                 <p>Rs. 1,850</p>
             </div>
             <div class="menu-card" data-aos="flip-left" data-aos-delay="100">
-                <h3 style="color:var(--orange)">Mutton Shinwari</h3>
+                <h3 style="color:var(--orange)">Mutton Karahi</h3>
                 <p>Rs. 2,900</p>
             </div>
         </div>
     </section>
 
-    <a href="https://wa.me/923135135811" class="whatsapp-float" target="_blank">
+    <section id="reviews">
+        <h2 class="section-title">Customer <span>Reviews</span></h2>
+        <div class="menu-grid">
+            <div class="menu-card" data-aos="fade-right">
+                <p style="color:var(--orange)">⭐⭐⭐⭐⭐</p>
+                <p>"Amazing desi food and great service!"</p>
+                <br><b>Ali Khan</b>
+            </div>
+            <div class="menu-card" data-aos="fade-left">
+                <p style="color:var(--orange)">⭐⭐⭐⭐⭐</p>
+                <p>"Best karahi in Islamabad. Highly recommended."</p>
+                <br><b>Sara Ahmed</b>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery" style="background: var(--white);">
+        <h2 class="section-title">Restaurant <span>Gallery</span></h2>
+        <div class="gallery-grid">
+            <img src="image_96c464.jpg" alt="Food 1">
+            <img src="image_96c7cb.jpg" alt="Interior">
+            </div>
+    </section>
+
+    <section id="location">
+        <h2 class="section-title">Find <span>Us</span></h2>
+        <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3318.598379417938!2d73.0537!3d33.7225!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38dfbf7790998633%3A0xea8f4c4755f1f9!2sRana%20Market%20F-7%2F2%20Islamabad!5e0!3m2!1sen!2spk!4v1709700000000!5m2!1sen!2spk" 
+            width="100%" height="400" style="border:0; border-radius:15px;" allowfullscreen="" loading="lazy">
+        </iframe>
+    </section>
+
+    <a href="https://wa.me/923135135811" class="whatsapp-float">
         <i class="fab fa-whatsapp"></i>
     </a>
 
+    <footer>
+        <img src="image_96c7cb.jpg" style="height:60px; margin-bottom:15px;">
+        <p>© 2026 Ootak Restaurant – Islamabad. All rights reserved.</p>
+    </footer>
+
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({ duration: 1000, once: true });
+        AOS.init({ duration: 800, once: true });
 
         window.onload = () => {
             const letters = document.querySelectorAll('.ootak-letters span');
-            
-            // Reveal letters faster
             letters.forEach((l, i) => {
                 setTimeout(() => {
                     l.style.opacity = '1';
                     l.style.transform = 'translateY(0)';
-                    l.style.transition = '0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
-                }, i * 200); // 200ms between letters instead of 300
+                    l.style.transition = '0.4s ease-out';
+                }, i * 150);
             });
 
-            // OPEN CURTAINS QUICKER
             setTimeout(() => {
                 document.getElementById('curtain-top').style.transform = 'translateY(-100%)';
                 document.getElementById('curtain-bottom').style.transform = 'translateY(100%)';
-                
                 setTimeout(() => {
                     document.getElementById('intro-loader').style.display = 'none';
                     document.body.style.overflow = 'auto';
-                }, 800); // Clean up loader faster
-            }, (letters.length * 200) + 300); // Only 300ms pause after last letter
+                }, 600);
+            }, (letters.length * 150) + 200);
         };
     </script>
 </body>
